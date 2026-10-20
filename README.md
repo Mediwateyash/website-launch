@@ -1,16 +1,57 @@
-# React + Vite
+# Interskill Staffing Solutions — Next Gen Hiring
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A cinematic, corporate web application and launch experience for **Interskill Staffing Solutions**.
 
-Currently, two official plugins are available:
+## 🌟 Features
+- **Cinematic Launch Experience**:
+  - **Stage 0 (GO LIVE Podium)**: Ceremonial trigger with glowing gold aura, sonar rings, and stardust particles. Triggers via touch tap or keyboard `Enter`.
+  - **Stage 1 (Atmosphere)**: Volumetric gold laser sweep revealing corporate architectural silhouettes.
+  - **Stage 2 (Talent Meets Opportunity)**: High-resolution photographic cards with 3D parallax depth and specular light sheens.
+  - **Stage 3 (Brand Reveal)**: Official Interskill logo emblem with golden halo, staggered brand typography, and tagline reveal.
+  - **Stage 4 (Launch Invitation)**: Stable launch screen featuring the primary CTA `ENTER THE WEBSITE →` with sweeping metallic highlight.
+  - **Seamless Reveal**: Iris wipe transition revealing the live website without page reload.
+  - **Replay & Skip**: Replay button (`Sparkles` icon) on the live site, accessible skip button, and session storage persistence.
+- **iPad Air & Tablet Optimized**: Responsive touch interaction, `100dvh` viewport support, keyboard `Enter` listener, and fluid scaling.
+- **Full Corporate Platform**: Executive search, candidate job board, employer consultation forms, advisory board, and CMS admin panel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Deploy to Vercel (1-Click)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The repository is fully configured for zero-configuration Vercel deployment via `vercel.json`:
 
-## Expanding the Oxlint configuration
+### Option A: Via Vercel Web Dashboard (Recommended)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+1. Open [https://vercel.com/new](https://vercel.com/new).
+2. Connect your GitHub account and import:
+   ```text
+   Mediwateyash/website-launch
+   ```
+3. Vercel automatically detects the configuration:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: `./`
+   - **Build Command**: `vite build`
+   - **Output Directory**: `dist`
+4. *(Optional Backend Environment Variables)*:
+   Under **Environment Variables**, add any required secrets if connecting to MongoDB Atlas or Cloudinary:
+   - `MONGO_URI`
+   - `JWT_SECRET`
+   - `CLOUDINARY_CLOUD_NAME`
+   - `CLOUDINARY_API_KEY`
+   - `CLOUDINARY_API_SECRET`
+5. Click **Deploy**. Your site will be live on an official `.vercel.app` domain in seconds!
+
+---
+
+## 💻 Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server on local network (accessible to iPad Air)
+npx vite --host 0.0.0.0 --port 5173
+
+# Build for production
+npm run build
+```
