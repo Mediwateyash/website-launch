@@ -177,43 +177,8 @@
 }
 
 /* --------------------------------------------------------------------------
-   Light Sweeps & Anamorphic Flares
+   Scene Stages Container
    -------------------------------------------------------------------------- */
-.cinematic-laser-sweep {
-  position: absolute;
-  top: 50%;
-  left: -40%;
-  width: 60%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(217, 180, 94, 0.2) 20%, #ffffff 50%, #D9B45E 75%, transparent 100%);
-  box-shadow: 0 0 25px 4px #D9B45E, 0 0 50px 10px rgba(255, 255, 255, 0.6);
-  transform: translateY(-50%) rotate(-5deg);
-  pointer-events: none;
-  z-index: 10;
-  animation: laserTravel 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes laserTravel {
-  0% { left: -60%; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { left: 140%; opacity: 0; }
-}
-
-/* Horizontal Anamorphic Lens Flare Line */
-.cinematic-lens-flare {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(217, 180, 94, 0.1) 20%, rgba(255, 255, 255, 0.8) 50%, rgba(217, 180, 94, 0.1) 80%, transparent 100%);
-  filter: drop-shadow(0 0 8px rgba(217, 180, 94, 0.8));
-  pointer-events: none;
-  z-index: 9;
-  opacity: 0.6;
-}
 
 /* --------------------------------------------------------------------------
    Scene Stages Container

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, ArrowRight, FastForward, Play, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, FastForward, Sparkles } from 'lucide-react';
 import './launch-intro.css';
 
 const SCENES = [
@@ -15,12 +15,10 @@ export default function CinematicLaunchIntro({ onComplete }) {
   const [currentScene, setCurrentScene] = useState(1);
   const [isExiting, setIsExiting] = useState(false);
   const [isWiping, setIsWiping] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   const canvasRef = useRef(null);
   const timerRef = useRef(null);
-  const audioCtxRef = useRef(null);
 
   // Check prefers-reduced-motion
   useEffect(() => {
@@ -30,72 +28,10 @@ export default function CinematicLaunchIntro({ onComplete }) {
     }
   }, []);
 
-  // Web Audio Synth for ceremonial launch & reveal sound
-  const playCinematicChime = (type = 'reveal') => {
-    try {
-      if (!soundEnabled) return;
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new AudioContext();
-      }
-      const ctx = audioCtxRef.current;
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-
-      const now = ctx.currentTime;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      if (type === 'golive') {
-        // Grand opening launch chord
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(130.81, now); // C3
-        osc.frequency.exponentialRampToValueAtTime(261.63, now + 0.8); // C4
-        gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.2, now + 0.2);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 2.5);
-      } else if (type === 'reveal') {
-        // High harmonic gold reveal tone
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(261.63, now); // C4
-        osc.frequency.exponentialRampToValueAtTime(523.25, now + 1.2); // C5
-        gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.22, now + 0.3);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 2.8);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 2.8);
-      } else if (type === 'enter') {
-        // Triumphant enter website chord
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(329.63, now); // E4
-        osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.6); // E5
-        gain.gain.setValueAtTime(0.01, now);
-        gain.gain.linearRampToValueAtTime(0.25, now + 0.2);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.6);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 1.6);
-      }
-    } catch (e) {
-      // Audio fallback silent
-    }
-  };
-
   // Handle Ceremonial "GO LIVE" Action
   const handleGoLive = () => {
     if (hasStartedLaunch) return;
     setHasStartedLaunch(true);
-    playCinematicChime('golive');
     setCurrentScene(1);
   };
 
@@ -121,18 +57,14 @@ export default function CinematicLaunchIntro({ onComplete }) {
     if (currentScene < 4) {
       const duration = SCENES[currentScene - 1].duration;
       timerRef.current = setTimeout(() => {
-        setCurrentScene((prev) => {
-          const next = prev + 1;
-          if (next === 3) playCinematicChime('reveal');
-          return next;
-        });
+        setCurrentScene((prev) => prev + 1);
       }, duration);
     }
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [hasStartedLaunch, currentScene, reducedMotion, soundEnabled]);
+  }, [hasStartedLaunch, currentScene, reducedMotion]);
 
   // Ambient Gold Stardust Particle System
   useEffect(() => {
@@ -210,7 +142,6 @@ export default function CinematicLaunchIntro({ onComplete }) {
   // Exit & Reveal Homepage Seamlessly
   const handleEnterWebsite = () => {
     if (isExiting) return;
-    playCinematicChime('enter');
     setIsWiping(true);
 
     setTimeout(() => {
@@ -232,11 +163,6 @@ export default function CinematicLaunchIntro({ onComplete }) {
     if (timerRef.current) clearTimeout(timerRef.current);
     if (!hasStartedLaunch) setHasStartedLaunch(true);
     setCurrentScene(sceneId);
-    if (sceneId === 3) playCinematicChime('reveal');
-  };
-
-  const toggleSound = () => {
-    setSoundEnabled((prev) => !prev);
   };
 
   return (
@@ -251,10 +177,6 @@ export default function CinematicLaunchIntro({ onComplete }) {
       <div className="cinematic-ambient-gradient" />
       <div className="cinematic-volumetric-halo" />
 
-      {/* Dynamic Laser & Flare sweeps */}
-      <div className="cinematic-laser-sweep" key={`laser-${hasStartedLaunch ? currentScene : 0}`} />
-      <div className="cinematic-lens-flare" />
-
       {/* Top Utility Controls */}
       <header className="cinematic-top-controls">
         <div className="cinematic-brand-micro">
@@ -267,16 +189,6 @@ export default function CinematicLaunchIntro({ onComplete }) {
         </div>
 
         <div className="cinematic-controls-right">
-          <button
-            type="button"
-            className="cinematic-icon-btn"
-            onClick={toggleSound}
-            title={soundEnabled ? 'Mute Audio' : 'Enable Ambient Cinematic Sound'}
-            aria-label={soundEnabled ? 'Mute sound' : 'Enable sound'}
-          >
-            {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
-          </button>
-
           <button
             type="button"
             className="cinematic-skip-btn"
