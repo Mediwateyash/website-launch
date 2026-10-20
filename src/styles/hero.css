@@ -1,0 +1,209 @@
+.hero-section {
+  background-color: var(--color-hero-navy);
+  color: var(--color-text-white);
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0 34px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero-eyebrow__tilde {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.hero-headline {
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.hero-headline__line1 {
+  display: block;
+  color: #FFFFFF;
+}
+
+.hero-headline__line2 {
+  display: block;
+  color: var(--color-gold);
+}
+
+.hero-description {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #9cb2cb;
+  max-width: 460px;
+  margin-bottom: 24px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stat-number {
+  font-size: 24px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+}
+
+.hero-stat-number.gold {
+  color: var(--color-gold);
+}
+
+.hero-stat-label {
+  font-size: 11px;
+  color: #8da3be;
+  margin-top: 4px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Right Content Area */
+.hero-right {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  max-width: 520px;
+  width: 100%;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Floating Next Gem Hiring Card */
+.hero-badge-card {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(6, 27, 53, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  z-index: 5;
+}
+
+.hero-badge-card__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fdf6e7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ebd8a6;
+}
+
+.hero-badge-card__icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.hero-badge-card__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-badge-card__title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary-navy);
+  line-height: 1.1;
+}
+
+.hero-badge-card__subtitle {
+  font-size: 9.5px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+/* Opportunity Callout */
+.hero-opportunity-callout {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-family: var(--font-script);
+  color: #12345e;
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+  z-index: 4;
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero-right {
+    justify-content: center;
+  }
+  .hero-headline {
+    font-size: 30px;
+  }
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}

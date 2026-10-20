@@ -1,0 +1,1055 @@
+/* ==========================================================================
+   CINEMATIC LAUNCH INTRO — INTERSKILL STAFFING SOLUTIONS
+   Brand Palette: Deep Navy, Royal Blue, Metallic Gold, Pure White
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Root Container & Overlay
+   -------------------------------------------------------------------------- */
+.cinematic-intro-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background-color: #030914;
+  color: #ffffff;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  perspective: 1200px;
+}
+
+.cinematic-intro-root.is-exiting {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-intro-root * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Background Ambient Layers & Canvas
+   -------------------------------------------------------------------------- */
+.cinematic-bg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cinematic-ambient-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, #0c2040 0%, #061326 45%, #020710 100%);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 1.2s ease;
+}
+
+/* Atmospheric Volumetric Lighting Orbs */
+.cinematic-volumetric-halo {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(217, 180, 94, 0.18) 0%, rgba(30, 64, 175, 0.12) 40%, transparent 70%);
+  filter: blur(60px);
+  z-index: 2;
+  pointer-events: none;
+  animation: haloPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes haloPulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.95; }
+}
+
+/* --------------------------------------------------------------------------
+   Top Controls Bar (Skip, Audio, Brand Cue)
+   -------------------------------------------------------------------------- */
+.cinematic-top-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+@media (max-width: 640px) {
+  .cinematic-top-controls {
+    padding: 0 16px;
+    height: 60px;
+  }
+}
+
+.cinematic-brand-micro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.85;
+}
+
+.cinematic-brand-micro-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(217, 180, 94, 0.4));
+}
+
+.cinematic-brand-micro-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+.cinematic-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cinematic-icon-btn {
+  background: rgba(10, 25, 47, 0.65);
+  border: 1px solid rgba(217, 180, 94, 0.35);
+  color: #D9B45E;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.cinematic-icon-btn:hover {
+  background: rgba(217, 180, 94, 0.2);
+  border-color: #D9B45E;
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.cinematic-skip-btn {
+  background: rgba(8, 22, 45, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.cinematic-skip-btn:hover {
+  background: rgba(217, 180, 94, 0.15);
+  border-color: rgba(217, 180, 94, 0.6);
+  color: #D9B45E;
+  transform: translateX(2px);
+}
+
+/* --------------------------------------------------------------------------
+   Light Sweeps & Anamorphic Flares
+   -------------------------------------------------------------------------- */
+.cinematic-laser-sweep {
+  position: absolute;
+  top: 50%;
+  left: -40%;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(217, 180, 94, 0.2) 20%, #ffffff 50%, #D9B45E 75%, transparent 100%);
+  box-shadow: 0 0 25px 4px #D9B45E, 0 0 50px 10px rgba(255, 255, 255, 0.6);
+  transform: translateY(-50%) rotate(-5deg);
+  pointer-events: none;
+  z-index: 10;
+  animation: laserTravel 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes laserTravel {
+  0% { left: -60%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 140%; opacity: 0; }
+}
+
+/* Horizontal Anamorphic Lens Flare Line */
+.cinematic-lens-flare {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(217, 180, 94, 0.1) 20%, rgba(255, 255, 255, 0.8) 50%, rgba(217, 180, 94, 0.1) 80%, transparent 100%);
+  filter: drop-shadow(0 0 8px rgba(217, 180, 94, 0.8));
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------
+   Scene Stages Container
+   -------------------------------------------------------------------------- */
+.cinematic-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px 90px;
+  z-index: 5;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s ease;
+}
+
+.cinematic-stage.stage-hidden {
+  opacity: 0;
+  transform: scale(0.96) translateY(12px);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.cinematic-stage.stage-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Scene 1: Opening Atmosphere
+   -------------------------------------------------------------------------- */
+.scene-atmosphere-wrap {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scene-atmosphere-backdrop {
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(circle at center, rgba(16, 42, 80, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: slowZoomIn 12s ease forwards;
+}
+
+@keyframes slowZoomIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+
+.scene-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #D9B45E;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.scene-eyebrow-line {
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #D9B45E);
+}
+
+.scene-eyebrow-line.line-right {
+  background: linear-gradient(90deg, #D9B45E, transparent);
+}
+
+.scene-title-mask {
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.scene-main-title {
+  font-size: clamp(28px, 5vw, 54px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  animation: textSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scene-gold-gradient-text {
+  background: linear-gradient(135deg, #FFF6D5 0%, #D9B45E 40%, #FFE29F 70%, #C4973B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 0 20px rgba(217, 180, 94, 0.3));
+}
+
+.scene-subtitle {
+  font-size: clamp(14px, 2vw, 18px);
+  color: #9DB2CF;
+  max-width: 620px;
+  line-height: 1.6;
+  margin-top: 12px;
+  font-weight: 400;
+}
+
+@keyframes textSlideUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   Scene 2: Talent Meets Opportunity (Photographic Cards & Real Imagery)
+   -------------------------------------------------------------------------- */
+.scene-talent-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 28px 0;
+  perspective: 1000px;
+}
+
+@media (max-width: 860px) {
+  .scene-talent-cards-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    gap: 14px;
+  }
+}
+
+.talent-photo-card {
+  position: relative;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10, 26, 49, 0.7);
+  border: 1px solid rgba(217, 180, 94, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  animation: cardFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 860px) {
+  .talent-photo-card {
+    height: 120px;
+  }
+}
+
+.talent-photo-card:nth-child(1) { animation-delay: 0.1s; }
+.talent-photo-card:nth-child(2) { animation-delay: 0.25s; }
+.talent-photo-card:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.talent-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  transition: transform 8s ease;
+  transform: scale(1.05);
+}
+
+.talent-photo-card:hover img {
+  transform: scale(1.15);
+}
+
+.talent-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 21, 43, 0.2) 0%, rgba(6, 21, 43, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px 20px;
+  text-align: left;
+}
+
+.talent-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #D9B45E;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.talent-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Light Sheen across Card */
+.talent-card-sheen {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  animation: cardSheenSweep 5s infinite;
+}
+
+@keyframes cardSheenSweep {
+  0% { left: -100%; }
+  35% { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* --------------------------------------------------------------------------
+   Scene 3: Official Brand Reveal (Signature Moment)
+   -------------------------------------------------------------------------- */
+.scene-brand-reveal-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  position: relative;
+}
+
+.brand-emblem-halo-box {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.brand-emblem-glow-ring {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 180, 94, 0.45) 0%, rgba(37, 99, 235, 0.2) 50%, transparent 70%);
+  filter: blur(12px);
+  animation: ringPulse 3.5s infinite alternate ease-in-out;
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.brand-reveal-logo-img {
+  position: relative;
+  height: 96px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(217, 180, 94, 0.5));
+  animation: logoEmerge 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 640px) {
+  .brand-reveal-logo-img {
+    height: 72px;
+  }
+}
+
+@keyframes logoEmerge {
+  0% { transform: scale(0.7) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.brand-typography-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-name-primary {
+  font-size: clamp(34px, 6vw, 68px);
+  font-weight: 900;
+  letter-spacing: 8px;
+  margin: 0;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, #E8CA80 40%, #D9B45E 65%, #ffffff 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.7));
+}
+
+.brand-name-sub {
+  font-size: clamp(14px, 2.4vw, 24px);
+  font-weight: 800;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #60A5FA;
+  margin: 0;
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+}
+
+.brand-tagline-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.brand-tagline-dash {
+  width: 48px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #D9B45E);
+}
+
+.brand-tagline-dash.dash-right {
+  background: linear-gradient(90deg, #D9B45E, transparent);
+}
+
+.brand-tagline-text {
+  font-size: clamp(11px, 1.6vw, 15px);
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: #D9B45E;
+  text-transform: uppercase;
+}
+
+.brand-declaration {
+  margin-top: 24px;
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Scene 4: Final Launch Screen (The Invitation)
+   -------------------------------------------------------------------------- */
+.scene-launch-final-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 860px;
+  padding: 0 16px;
+  position: relative;
+}
+
+.launch-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  background: rgba(10, 27, 53, 0.8);
+  border: 1px solid rgba(217, 180, 94, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(217, 180, 94, 0.2);
+  margin-bottom: 24px;
+}
+
+.launch-badge-logo {
+  height: 28px;
+  width: auto;
+}
+
+.launch-badge-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.launch-badge-sep {
+  color: #D9B45E;
+  opacity: 0.6;
+}
+
+.launch-badge-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #D9B45E;
+  text-transform: uppercase;
+}
+
+.launch-headline-main {
+  font-size: clamp(30px, 5.5vw, 62px);
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
+}
+
+.launch-supporting-line {
+  font-size: clamp(16px, 2.4vw, 22px);
+  font-weight: 400;
+  color: #9DB2CF;
+  margin: 0 0 36px 0;
+  letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------------------------------
+   PREMIUM CTA: "ENTER THE WEBSITE →"
+   -------------------------------------------------------------------------- */
+.launch-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px 48px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #123769 0%, #092344 60%, #061933 100%);
+  border: 1.5px solid #D9B45E;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 25px rgba(217, 180, 94, 0.35);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .launch-cta-btn {
+    padding: 16px 36px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    gap: 10px;
+  }
+}
+
+.launch-cta-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.6), 0 0 45px rgba(217, 180, 94, 0.65);
+  border-color: #FFE29F;
+  background: linear-gradient(135deg, #17427d 0%, #0b2d57 60%, #092344 100%);
+}
+
+.launch-cta-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.launch-cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #D9B45E;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.launch-cta-btn:hover .launch-cta-arrow {
+  transform: translateX(6px);
+  color: #ffffff;
+}
+
+/* Sweeping gold metallic highlight across button */
+.launch-cta-sheen {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(217, 180, 94, 0.25) 30%, rgba(255, 255, 255, 0.7) 50%, rgba(217, 180, 94, 0.25) 70%, transparent 100%);
+  transform: skewX(-28deg);
+  pointer-events: none;
+  animation: ctaSheenSweep 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ctaSheenSweep {
+  0% { left: -120%; }
+  45% { left: 220%; }
+  100% { left: 220%; }
+}
+
+.launch-cta-btn:hover .launch-cta-sheen {
+  animation: ctaSheenSweepFast 1.4s infinite;
+}
+
+@keyframes ctaSheenSweepFast {
+  0% { left: -120%; }
+  100% { left: 220%; }
+}
+
+/* Secondary Launch Details */
+.launch-trust-pills {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.launch-trust-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 1px;
+}
+
+.launch-trust-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #D9B45E;
+  box-shadow: 0 0 8px #D9B45E;
+}
+
+/* --------------------------------------------------------------------------
+   Bottom Scene Timeline Scrubber / Progress
+   -------------------------------------------------------------------------- */
+.cinematic-timeline-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+@media (max-width: 640px) {
+  .cinematic-timeline-bar {
+    padding: 0 16px;
+    height: 52px;
+  }
+}
+
+.cinematic-scene-indicators {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cinematic-scene-tab {
+  background: none;
+  border: none;
+  padding: 6px 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+.cinematic-scene-tab:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cinematic-scene-tab.is-active {
+  color: #D9B45E;
+}
+
+.cinematic-tab-bar {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.cinematic-scene-tab.is-active .cinematic-tab-bar {
+  width: 44px;
+  background: #D9B45E;
+  box-shadow: 0 0 10px rgba(217, 180, 94, 0.8);
+}
+
+@media (max-width: 640px) {
+  .cinematic-scene-title-label {
+    display: none;
+  }
+  .cinematic-scene-tab.is-active .cinematic-tab-bar {
+    width: 28px;
+  }
+}
+
+.cinematic-launch-credit {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .cinematic-launch-credit {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Exit Transition Full-Screen Iris Sweep / Wipe
+   -------------------------------------------------------------------------- */
+.cinematic-exit-wipe {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 245, 210, 0.95) 0%, rgba(217, 180, 94, 0.8) 40%, rgba(9, 35, 68, 0.95) 80%, #030a16 100%);
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinematic-exit-wipe.is-wiping {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* --------------------------------------------------------------------------
+   Stage 0: "GO LIVE" Launch Podium / Ceremonial Trigger
+   -------------------------------------------------------------------------- */
+.cinematic-golive-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 880px;
+  padding: 0 20px;
+  position: relative;
+  animation: goliveFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes goliveFadeIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.golive-emblem-wrap {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.golive-emblem-glow {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 180, 94, 0.4) 0%, rgba(37, 99, 235, 0.2) 50%, transparent 70%);
+  filter: blur(16px);
+  animation: ringPulse 4s infinite alternate ease-in-out;
+}
+
+.golive-emblem-img {
+  position: relative;
+  height: clamp(68px, 11vw, 96px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(217, 180, 94, 0.5));
+}
+
+.golive-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  background: rgba(10, 27, 53, 0.75);
+  border: 1px solid rgba(217, 180, 94, 0.4);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #D9B45E;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.golive-title-main {
+  font-size: clamp(28px, 5.5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.8);
+}
+
+.golive-subtitle {
+  font-size: clamp(14px, 2vw, 18px);
+  color: #9DB2CF;
+  margin: 0 0 38px 0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* CEREMONIAL "GO LIVE" BUTTON */
+.golive-trigger-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 22px 56px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0f3261 0%, #071c38 60%, #041021 100%);
+  border: 2px solid #D9B45E;
+  color: #ffffff;
+  font-size: clamp(17px, 2.2vw, 21px);
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(217, 180, 94, 0.45);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.golive-trigger-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  border-color: #FFE29F;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7), 0 0 55px rgba(217, 180, 94, 0.75);
+  background: linear-gradient(135deg, #164685 0%, #0b2d5a 60%, #071c38 100%);
+}
+
+.golive-trigger-btn:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+/* Pulsing Sonar Ring around GO LIVE button */
+.golive-sonar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 2px solid #D9B45E;
+  opacity: 0.8;
+  animation: goliveSonar 2.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  pointer-events: none;
+}
+
+.golive-sonar-ring-2 {
+  position: absolute;
+  inset: -14px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(217, 180, 94, 0.6);
+  opacity: 0.5;
+  animation: goliveSonar 2.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation-delay: 0.7s;
+  pointer-events: none;
+}
+
+@keyframes goliveSonar {
+  0% { transform: scale(0.96); opacity: 0.8; }
+  60% { opacity: 0.4; }
+  100% { transform: scale(1.22); opacity: 0; }
+}
+
+.golive-sparkle-icon {
+  color: #D9B45E;
+  animation: sparkleTwinkle 2s infinite ease-in-out;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.25) rotate(15deg); opacity: 1; color: #FFF6D5; }
+}
+
+.golive-hint-text {
+  margin-top: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(217, 180, 94, 0.75);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.golive-key-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid rgba(217, 180, 94, 0.4);
+  background: rgba(10, 26, 49, 0.8);
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   iPad Air, Tablet & iOS Safari Optimizations
+   -------------------------------------------------------------------------- */
+@supports (height: 100dvh) {
+  .cinematic-intro-root {
+    height: 100dvh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .cinematic-intro-root {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-touch-callout: none;
+  }
+
+  .cinematic-stage {
+    padding: 70px 28px 80px;
+  }
+
+  .scene-talent-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 92%;
+  }
+
+  .talent-photo-card {
+    height: 195px;
+  }
+
+  .golive-trigger-btn {
+    padding: 24px 64px;
+    font-size: 20px;
+  }
+
+  .launch-cta-btn {
+    padding: 22px 54px;
+    font-size: 17px;
+  }
+}
+

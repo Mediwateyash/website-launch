@@ -1,0 +1,49 @@
+:root {
+  /* Color Palette matching reference screenshot */
+  --color-primary-navy: #092344;
+  --color-deep-navy: #061B35;
+  --color-hero-navy: #061E39;
+  --color-royal-blue: #173D69;
+  --color-footer-navy: #071C34;
+
+  --color-gold: #D9B45E;
+  --color-gold-hover: #C9A34C;
+  --color-light-gold: #E8CA80;
+  --color-gold-badge: #F9F4E8;
+  --color-gold-border: rgba(217, 180, 94, 0.4);
+
+  --color-bg-page: #FFFFFF;
+  --color-surface: #F0F4F9;
+  --color-surface-hover: #E7EEF6;
+  --color-surface-subtle: #F8FAFC;
+
+  --color-border: #E3E9F0;
+  --color-border-light: #EEF2F6;
+  --color-border-dark: #1E375A;
+
+  --color-text-main: #092344;
+  --color-text-secondary: #657184;
+  --color-text-muted: #8DA3BE;
+  --color-text-white: #FFFFFF;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Caveat', cursive, sans-serif;
+
+  /* Layout */
+  --container-max-width: 1220px;
+  --container-padding: 24px;
+  --section-spacing: 52px;
+
+  /* Radius & Transitions */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 9999px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --shadow-subtle: 0 4px 16px rgba(9, 35, 68, 0.04);
+  --shadow-card: 0 4px 20px rgba(9, 35, 68, 0.06);
+  --shadow-hover: 0 8px 24px rgba(9, 35, 68, 0.1);
+}

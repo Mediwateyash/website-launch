@@ -1,0 +1,63 @@
+name: Deploy Staffing to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-staffing-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to AlmaLinux VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate GitHub Secrets
+        run: |
+          missing=()
+          [ -z "${{ secrets.SSH_HOST }}" ] && missing+=("SSH_HOST")
+          [ -z "${{ secrets.SSH_USER }}" ] && missing+=("SSH_USER")
+          [ -z "${{ secrets.SSH_PORT }}" ] && missing+=("SSH_PORT")
+          [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ] && missing+=("SSH_PRIVATE_KEY")
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::Missing required repository secret(s): ${missing[*]}"
+            echo "Please configure SSH_HOST, SSH_USER, SSH_PORT, and SSH_PRIVATE_KEY in GitHub Repository Settings."
+            exit 1
+          fi
+
+      - name: Connect and Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          command_timeout: 10m
+          script: |
+            set -euo pipefail
+
+            export PATH="/opt/cpanel/ea-nodejs22/bin:/opt/cpanel/ea-nodejs22/lib/node_modules/pm2/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+            DEPLOY_SCRIPT="/home/interski/bin/deploy-staffing.sh"
+
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] Connecting via SSH as user $(whoami) on host $(hostname)..."
+
+            # Fail immediately if server deployment wrapper is missing or not executable
+            if [ ! -f "$DEPLOY_SCRIPT" ]; then
+              echo "ERROR: Server deployment wrapper '$DEPLOY_SCRIPT' not found." >&2
+              exit 1
+            fi
+
+            if [ ! -x "$DEPLOY_SCRIPT" ]; then
+              echo "ERROR: Server deployment wrapper '$DEPLOY_SCRIPT' is not marked executable." >&2
+              exit 1
+            fi
+
+            echo "[$(date '+%Y-%m-%d %H:%M:%S')] Invoking server deployment wrapper: $DEPLOY_SCRIPT"
+            "$DEPLOY_SCRIPT"
+

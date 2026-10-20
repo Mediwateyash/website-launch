@@ -1,0 +1,896 @@
+/* ==========================================================================
+   FOR EMPLOYERS LANDING PAGE STYLES
+   Visual reference: 3 Company Landing Page.png
+   Palette:
+   - Deep Navy: #071D3A / #092344
+   - Gold: #DDB568 / #D9B45E
+   - Surface Light Blue-Gray: #F0F4F9 / #F2F5F8
+   - Borders: #E5EAF0
+   - Main Text: #102748
+   - Muted Text: #64738A
+   ========================================================================== */
+
+.emp-page-root {
+  background-color: #FFFFFF;
+  color: var(--color-text-main, #102748);
+  font-family: var(--font-primary, 'Inter', -apple-system, sans-serif);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-page-main {
+  flex: 1;
+}
+
+/* Common decorative gold bar above headings */
+.emp-decorative-bar {
+  display: inline-block;
+  width: 28px;
+  height: 3px;
+  background-color: var(--color-gold, #DDB568);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+/* ==================== HERO SECTION ==================== */
+.emp-hero {
+  background-color: var(--color-hero-navy, #071D3A);
+  color: #FFFFFF;
+  overflow: hidden;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.emp-hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  align-items: center;
+  gap: 36px;
+}
+
+.emp-hero__left {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.emp-hero__eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-gold, #DDB568);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.emp-hero__headline {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.emp-hero__headline-gold {
+  color: var(--color-gold, #DDB568);
+}
+
+.emp-hero__description {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #c0d1e5;
+  max-width: 500px;
+  margin-bottom: 24px;
+}
+
+.emp-hero__benefits-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.emp-hero__benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.emp-hero__benefit-icon {
+  color: var(--color-gold, #DDB568);
+  flex-shrink: 0;
+}
+
+.emp-hero__benefit-text {
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #e2eaf4;
+}
+
+.emp-hero__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-gold, #DDB568);
+  color: var(--color-primary-navy, #092344);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm, 6px);
+  width: fit-content;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(221, 181, 104, 0.25);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.emp-hero__cta-btn:hover {
+  background-color: var(--color-gold-hover, #cb9f4f);
+  transform: translateY(-1px);
+}
+
+.emp-hero__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.emp-hero__image-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  width: 100%;
+  max-width: 480px;
+}
+
+.emp-hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ==================== RECRUITMENT SERVICES ==================== */
+.emp-services-section {
+  padding-top: 40px;
+  padding-bottom: 34px;
+}
+
+.emp-section-header-split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  gap: 16px;
+}
+
+.emp-section-header__title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-primary-navy, #092344);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.emp-section-header__subtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary, #64738A);
+}
+
+.emp-btn-outline-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--color-gold, #DDB568);
+  color: var(--color-gold, #DDB568);
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 6px);
+  background: transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.emp-btn-outline-gold:hover {
+  background-color: var(--color-gold, #DDB568);
+  color: var(--color-primary-navy, #092344);
+}
+
+.emp-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.emp-service-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-md, 8px);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 6px rgba(7, 29, 58, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.emp-service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(7, 29, 58, 0.08);
+}
+
+.emp-service-card__icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #fcf7ec;
+  color: var(--color-gold, #DDB568);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.emp-service-card__title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--color-primary-navy, #092344);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.emp-service-card__desc {
+  font-size: 12px;
+  color: var(--color-text-secondary, #64738A);
+  line-height: 1.5;
+}
+
+/* ==================== 2-COLUMN: INDUSTRIES + HIRING FORM ==================== */
+.emp-industries-form-section {
+  padding-bottom: 36px;
+}
+
+.emp-split-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Left: Industries We Serve */
+.emp-industries-panel {
+  background-color: #F0F4F9;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-lg, 12px);
+  padding: 24px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-industries-subgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.emp-industries-subgrid-row2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.emp-industry-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-md, 8px);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(7, 29, 58, 0.02);
+  transition: transform 0.15s ease;
+}
+
+.emp-industry-card:hover {
+  transform: translateY(-2px);
+}
+
+.emp-industry-card__icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fcf7ec;
+  color: var(--color-gold, #DDB568);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emp-industry-card__label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-primary-navy, #092344);
+  line-height: 1.25;
+}
+
+/* Right: Submit Hiring Requirement Form */
+.emp-hiring-form-card {
+  background-color: var(--color-hero-navy, #071D3A);
+  color: #FFFFFF;
+  border-radius: var(--radius-lg, 12px);
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(7, 29, 58, 0.18);
+}
+
+.emp-hiring-form__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.emp-hiring-form__subtitle {
+  font-size: 12px;
+  color: #9cb2cb;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.emp-form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.emp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.emp-form-group--full {
+  margin-bottom: 14px;
+}
+
+.emp-form-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e2eaf4;
+}
+
+.emp-form-label .req {
+  color: var(--color-gold, #DDB568);
+}
+
+.emp-form-input,
+.emp-form-select,
+.emp-form-textarea {
+  background-color: #FFFFFF;
+  border: 1px solid #d3dce6;
+  border-radius: var(--radius-sm, 6px);
+  padding: 7px 11px;
+  font-size: 12px;
+  color: var(--color-primary-navy, #092344);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.emp-form-input:focus,
+.emp-form-select:focus,
+.emp-form-textarea:focus {
+  outline: none;
+  border-color: var(--color-gold, #DDB568);
+  box-shadow: 0 0 0 2px rgba(221, 181, 104, 0.2);
+}
+
+.emp-form-textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.emp-form-submit-btn {
+  background-color: var(--color-gold, #DDB568);
+  color: var(--color-primary-navy, #092344);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 9px;
+  border-radius: var(--radius-sm, 6px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+  margin-bottom: 10px;
+}
+
+.emp-form-submit-btn:hover {
+  background-color: var(--color-gold-hover, #cb9f4f);
+}
+
+.emp-form-confidential {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: #c0d1e5;
+  justify-content: center;
+}
+
+.emp-form-confidential-icon {
+  color: var(--color-gold, #DDB568);
+  flex-shrink: 0;
+}
+
+.emp-form-alert-success {
+  background-color: rgba(46, 125, 50, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  color: #a5d6a7;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 11.5px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ==================== OUR RECRUITMENT PROCESS ==================== */
+.emp-process-section {
+  padding-bottom: 36px;
+}
+
+.emp-process-panel {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-lg, 12px);
+  padding: 24px 20px;
+  box-shadow: 0 2px 6px rgba(7, 29, 58, 0.02);
+}
+
+.emp-process-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.emp-process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  max-width: 180px;
+}
+
+.emp-process-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #F0F4F9;
+  color: var(--color-primary-navy, #092344);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.emp-process-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-primary-navy, #092344);
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.emp-process-desc {
+  font-size: 10.5px;
+  color: var(--color-text-secondary, #64738A);
+  line-height: 1.35;
+}
+
+.emp-process-arrow {
+  color: #a4b5cb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+/* ==================== WHY CHOOSE US & STATS ROW ==================== */
+.emp-why-stats-section {
+  padding-bottom: 36px;
+}
+
+.emp-why-stats-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.emp-why-panel {
+  background-color: #F0F4F9;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-lg, 12px);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.emp-why-image-wrap {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+}
+
+.emp-why-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.emp-why-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-why-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary-navy, #092344);
+  margin-bottom: 12px;
+}
+
+.emp-why-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emp-why-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--color-text-main, #102748);
+  line-height: 1.3;
+}
+
+.emp-why-check-icon {
+  color: var(--color-gold, #DDB568);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Right: Stats Panel */
+.emp-stats-panel {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-lg, 12px);
+  padding: 20px 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(7, 29, 58, 0.02);
+}
+
+.emp-stat-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 10px;
+  position: relative;
+}
+
+.emp-stat-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: var(--color-border, #E5EAF0);
+}
+
+.emp-stat-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #fcf7ec;
+  color: var(--color-gold, #DDB568);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.emp-stat-stars-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 38px;
+  color: var(--color-gold, #DDB568);
+  margin-bottom: 12px;
+}
+
+.emp-stat-number {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-primary-navy, #092344);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.emp-stat-number--gold {
+  color: var(--color-gold, #DDB568);
+}
+
+.emp-stat-label {
+  font-size: 11px;
+  color: var(--color-text-secondary, #64738A);
+  line-height: 1.25;
+}
+
+/* ==================== CLIENT TESTIMONIALS ==================== */
+.emp-testimonials-section {
+  padding-bottom: 38px;
+}
+
+.emp-testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.emp-testimonial-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border, #E5EAF0);
+  border-radius: var(--radius-lg, 12px);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(7, 29, 58, 0.02);
+}
+
+.emp-testimonial-quote-wrap {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.emp-testimonial-quote-icon {
+  color: var(--color-gold, #DDB568);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.emp-testimonial-quote-text {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--color-text-main, #102748);
+}
+
+.emp-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 36px;
+}
+
+.emp-testimonial-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--color-border, #E5EAF0);
+}
+
+.emp-testimonial-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-testimonial-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-primary-navy, #092344);
+  line-height: 1.2;
+}
+
+.emp-testimonial-role-company {
+  font-size: 11.5px;
+  color: var(--color-text-secondary, #64738A);
+  margin-top: 2px;
+}
+
+/* ==================== CALLBACK BANNER ==================== */
+.emp-callback-section {
+  padding-bottom: 40px;
+}
+
+.emp-callback-banner {
+  background-color: var(--color-hero-navy, #071D3A);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 140px 1.2fr auto 1.4fr;
+  align-items: center;
+  color: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(7, 29, 58, 0.15);
+  padding-right: 28px;
+  gap: 16px;
+}
+
+.emp-callback-banner__photo-wrap {
+  height: 100%;
+  min-height: 110px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.emp-callback-banner__photo {
+  height: 110px;
+  width: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.emp-callback-banner__text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-callback-banner__title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+
+.emp-callback-banner__subtitle {
+  font-size: 11.5px;
+  color: #9cb2cb;
+  line-height: 1.35;
+}
+
+.emp-callback-banner__divider {
+  width: 1px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.emp-callback-banner__form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.emp-callback-banner__btn {
+  background-color: var(--color-gold, #DDB568);
+  color: var(--color-primary-navy, #092344);
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 6px);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  height: 34px;
+  transition: background-color 0.2s ease;
+}
+
+.emp-callback-banner__btn:hover {
+  background-color: var(--color-gold-hover, #cb9f4f);
+}
+
+/* ==================== RESPONSIVE MEDIA QUERIES ==================== */
+@media (max-width: 1024px) {
+  .emp-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .emp-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .emp-split-grid {
+    grid-template-columns: 1fr;
+  }
+  .emp-why-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .emp-callback-banner {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    text-align: center;
+  }
+  .emp-callback-banner__photo-wrap {
+    justify-content: center;
+  }
+  .emp-callback-banner__divider {
+    display: none;
+  }
+  .emp-callback-banner__form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .emp-callback-banner__btn {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .emp-hero__headline {
+    font-size: 30px;
+  }
+  .emp-hero__benefits-row {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .emp-process-timeline {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .emp-process-arrow {
+    display: none;
+  }
+  .emp-why-panel {
+    grid-template-columns: 1fr;
+  }
+  .emp-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .emp-industries-subgrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .emp-services-grid {
+    grid-template-columns: 1fr;
+  }
+  .emp-form-row-2col {
+    grid-template-columns: 1fr;
+  }
+  .emp-stats-panel {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .emp-stat-col:not(:last-child)::after {
+    display: none;
+  }
+}
